@@ -135,9 +135,9 @@ main { margin-left: var(--rail-width); max-width: 1680px; padding-top: var(--nav
 .catalog-topline { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; gap: 20px; margin-bottom: 56px; font-size: var(--font-caption); color: var(--color-muted); }
 .catalog h1 { grid-column: 1 / -1; text-transform: uppercase; }
 .catalog-intro { grid-column: 5 / -1; max-width: 400px; margin-top: 28px; }
-.catalog-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 80px 28px; align-items: start; }
+.catalog-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 80px 28px; align-items: end; }
 .catalog-card { grid-column: span 5; min-width: 0; }
-.catalog-card--offset { grid-column: 8 / -1; margin-top: 128px; }
+.catalog-card--offset { grid-column: 8 / -1; }
 .catalog-card--wide { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 28px; align-items: end; }
 .catalog-card--wide .catalog-cover { grid-column: 5 / -1; grid-row: 1; }
 .catalog-card--wide .catalog-info { grid-column: 1 / 4; grid-row: 1; padding-top: 0; }
@@ -244,7 +244,6 @@ main { margin-left: var(--rail-width); max-width: 1680px; padding-top: var(--nav
   .catalog-card--reverse .catalog-info { grid-column: 9 / -1; padding-right: 0; }
   .catalog-cover--pinkly { padding: 24px; }
   .catalog-grid { row-gap: 64px; }
-  .catalog-card--offset { margin-top: 96px; }
   .case-image--pinkly { padding: 24px; }
 }
 
@@ -288,7 +287,6 @@ main { margin-left: var(--rail-width); max-width: 1680px; padding-top: var(--nav
   .catalog-intro { grid-column: 1 / -1; max-width: 310px; margin-top: 24px; }
   .catalog-grid { grid-template-columns: minmax(0, 1fr); row-gap: 48px; }
   .catalog-card, .catalog-card--wide { grid-column: auto; display: block; }
-  .catalog-card--offset { margin-top: 0; }
   .catalog-card--wide .catalog-info { padding-top: 16px; padding-right: 0; }
   .catalog-info { padding-top: 16px; padding-bottom: 20px; }
   .catalog-index { margin-bottom: 12px; }
