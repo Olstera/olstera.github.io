@@ -94,10 +94,12 @@ content:
       - name: published
         label: Включить в публикацию
         type: boolean
+        default: false
         description: Включите для готового кейса. Затем сохраните и нажмите «Опубликовать сайт». Выключенный проект не попадает на сайт, но его файлы видны в открытом репозитории GitHub.
       - name: featured
         label: Показывать на главной
         type: boolean
+        default: false
         description: Рекомендуется выбрать 2–4 работы. Первая выбранная работа показывается крупно.
       - name: description
         label: Направление / краткое описание
