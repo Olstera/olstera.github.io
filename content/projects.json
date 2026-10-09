@@ -142,11 +142,5 @@
         "alt": "Полный макет концепции сайта Event Umarova"
       }
     ]
-  },
-  {
-    "name": "Проверка кабинета",
-    "slug": "cms-check",
-    "published": true,
-    "featured": false
   }
 ]
