@@ -1,0 +1,29 @@
+name: Предпросмотр сайта
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Pages CMS context (optional for a manual run)
+        required: false
+        default: '{}'
+        type: string
+permissions:
+  contents: read
+jobs:
+  preview:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build including completed drafts
+        run: python3 tools/build_release.py --include-drafts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-preview
+          path: dist/
+          retention-days: 7
+          if-no-files-found: error
+      - name: Preview instructions
+        run: |
+          echo '### Предпросмотр готов' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Скачайте portfolio-preview в разделе Artifacts этого запуска, распакуйте архив и откройте index.html. Основной сайт не изменён. Не загружайте этот архив в GitHub Pages: он включает черновики.' >> "$GITHUB_STEP_SUMMARY"

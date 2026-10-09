@@ -1,0 +1,13 @@
+name: Проверка сайта
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Regression checks
+        run: python3 -m unittest discover -s tools -p 'test_*.py' -v
+      - name: Build and validate public pages
+        run: python3 tools/build_release.py

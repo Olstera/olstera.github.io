@@ -1,0 +1,223 @@
+# Pages CMS configuration. Documentation: https://pagescms.org/docs/
+media:
+  input: assets/images
+  output: assets/images
+  rename: random
+  extensions: [jpg, jpeg, png, webp]
+
+settings:
+  hide: true
+  content:
+    merge: false
+
+actions:
+  - name: preview
+    label: Собрать предпросмотр
+    workflow: preview.yml
+    ref: main
+    confirm:
+      title: Подготовить предпросмотр?
+      message: Сначала сохраните изменения. Будет собран архив сайта, включая заполненные черновики. Действующий сайт не изменится.
+      button: Собрать архив
+  - name: publish
+    label: Опубликовать сайт
+    workflow: publish.yml
+    ref: main
+    cancelable: false
+    confirm:
+      title: Опубликовать сохранённые изменения?
+      message: Обновятся все страницы сайта. Проекты с выключенным переключателем «Включить в публикацию» останутся вне сайта.
+      button: Опубликовать
+
+components:
+  image:
+    type: object
+    fields:
+      - name: src
+        label: Изображение
+        type: image
+      - name: alt
+        label: Что изображено
+        type: string
+        description: Кратко опишите изображение словами. Это нужно для доступности и обязательно перед публикацией.
+      - name: caption
+        label: Подпись под изображением
+        type: string
+  image-block:
+    type: object
+    fields:
+      - name: title
+        label: Заголовок блока
+        type: string
+      - name: src
+        label: Изображение
+        type: image
+      - name: alt
+        label: Что изображено
+        type: string
+      - name: caption
+        label: Подпись под изображением
+        type: string
+      - name: theme
+        label: Подложка
+        type: select
+        options:
+          values:
+            - name: none
+              label: Без подложки
+            - name: pinkly
+              label: Розовая подложка Pinkly
+
+content:
+  - name: projects
+    label: Проекты
+    type: file
+    path: content/projects.json
+    format: json
+    list: true
+    description: Порядок списка задаёт порядок каталога. Черновики можно сохранить незаполненными. Для публикации нужны все основные поля, обложка и хотя бы один блок.
+    operations:
+      delete: false
+    fields:
+      - name: name
+        label: Название проекта
+        type: string
+        required: true
+      - name: slug
+        label: Адрес проекта
+        type: string
+        required: true
+        description: Уникальное короткое имя латиницей, например o-sh. После публикации лучше не менять, чтобы старые ссылки работали.
+        pattern:
+          regex: '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+          message: Только маленькие латинские буквы, цифры и дефисы между словами.
+      - name: published
+        label: Включить в публикацию
+        type: boolean
+        description: Включите для готового кейса. Затем сохраните и нажмите «Опубликовать сайт». Выключенный проект не попадает на сайт, но его файлы видны в открытом репозитории GitHub.
+      - name: featured
+        label: Показывать на главной
+        type: boolean
+        description: Рекомендуется выбрать 2–4 работы. Первая выбранная работа показывается крупно.
+      - name: description
+        label: Направление / краткое описание
+        type: string
+        description: Например, «Интерфейс AI-конструктора сайтов». Стиль H4 в начале кейса, обычная подпись в карточке.
+      - name: type
+        label: Тег проекта
+        type: string
+        description: Например, «Веб-дизайн», «Концепция» или «Веб-сервис / AI».
+      - name: role
+        label: Моя роль
+        type: string
+      - name: intro
+        label: Вводное описание
+        type: text
+        description: Обычный наборный текст 14px под направлением проекта.
+      - name: cover
+        label: Обложка в каталоге и на главной
+        type: object
+        fields:
+          - name: src
+            label: Изображение
+            type: image
+          - name: alt
+            label: Что изображено
+            type: string
+          - name: format
+            label: Формат обложки
+            type: select
+            options:
+              values:
+                - name: square
+                  label: Квадратная
+                - name: portrait
+                  label: Вертикальная
+                - name: landscape
+                  label: Горизонтальная
+                - name: pinkly
+                  label: Полностью на розовой подложке
+      - name: blocks
+        label: Блоки страницы
+        type: block
+        blockKey: kind
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{title}'
+        blocks:
+          - name: text
+            label: Текст
+            fields:
+              - name: title
+                label: Заголовок слева
+                type: string
+              - name: text
+                label: Описание справа
+                type: text
+                description: Обычный текст 14px. Разделяйте абзацы пустой строкой. Предлоги переносятся автоматически.
+          - name: image
+            label: Изображение справа
+            component: image-block
+          - name: image-wide
+            label: Изображение на всю ширину
+            component: image-block
+          - name: image-pair
+            label: Два изображения рядом
+            fields:
+              - name: title
+                label: Заголовок
+                type: string
+              - name: images
+                label: Изображения
+                component: image
+                list:
+                  max: 2
+                  collapsible:
+                    collapsed: true
+                    summary: '{alt}'
+          - name: mobile-gallery
+            label: Мобильные экраны
+            fields:
+              - name: title
+                label: Заголовок
+                type: string
+              - name: images
+                label: Экраны
+                component: image
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: '{alt}'
+  - name: site
+    label: Имя и контакты
+    type: file
+    path: content/site.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: owner_surname
+        label: Фамилия
+        type: string
+        required: true
+      - name: owner_first_name
+        label: Имя
+        type: string
+        required: true
+      - name: copyright_year
+        label: Год в футере
+        type: number
+        required: true
+      - name: telegram_url
+        label: Telegram — полный адрес https://t.me/...
+        type: string
+        required: true
+      - name: instagram_url
+        label: Instagram — полный адрес https://www.instagram.com/...
+        type: string
+        required: true
+      - name: email
+        label: Почта
+        type: string
+        required: true

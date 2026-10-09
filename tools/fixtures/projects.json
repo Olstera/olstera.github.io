@@ -1,0 +1,170 @@
+[
+  {
+    "slug": "pinkly",
+    "name": "Pinkly",
+    "description": "Интерфейс AI-конструктора сайтов",
+    "type": "Веб-сервис / AI",
+    "role": "Арт-дирекшен и дизайн интерфейса",
+    "intro": "Сервис, в котором создание сайта начинается с идеи и текстового запроса.",
+    "blocks": [
+      {
+        "kind": "image",
+        "title": "Главный экран",
+        "src": "assets/images/pinkly.jpg",
+        "alt": "Главный экран Pinkly с полем ввода запроса и розовыми волнами",
+        "width": 1044,
+        "height": 511,
+        "theme": "pinkly"
+      },
+      {
+        "kind": "text",
+        "title": "Моя роль",
+        "text": "Первые наброски я делала вместе с Claude и Codex. Затем выбирала направление, дорабатывала черновики и вручную уточняла дизайн. В этом проекте моя работа сочетала арт-дирекшен и самостоятельную работу над интерфейсом."
+      }
+    ],
+    "featured": true,
+    "cover": {
+      "src": "assets/images/pinkly.jpg",
+      "alt": "Главный экран Pinkly с розовыми волнами и полем ввода",
+      "width": 1044,
+      "height": 511,
+      "format": "pinkly"
+    },
+    "published": true
+  },
+  {
+    "slug": "aurema",
+    "name": "Aurema",
+    "description": "Интернет-магазин косметики",
+    "type": "Веб-дизайн",
+    "role": "Веб-дизайн",
+    "intro": "Косметика, подборки и каталог товаров — на одной главной странице.",
+    "blocks": [
+      {
+        "kind": "image",
+        "title": "Главная страница",
+        "src": "assets/images/aurema.jpg",
+        "alt": "Полный макет главной страницы магазина косметики Aurema",
+        "width": 1400,
+        "height": 6914
+      }
+    ],
+    "featured": true,
+    "cover": {
+      "src": "assets/images/aurema.jpg",
+      "alt": "Сайт Aurema: косметика и каталог товаров",
+      "width": 1400,
+      "height": 6914,
+      "format": "square"
+    },
+    "published": true
+  },
+  {
+    "slug": "o-sh",
+    "name": "O–Sh",
+    "description": "Украшения с характером",
+    "type": "Концепция",
+    "role": "Веб-дизайн",
+    "intro": "Концепция сайта украшений: крупные портреты, акцентная типографика и предметные фотографии.",
+    "blocks": [
+      {
+        "kind": "image",
+        "title": "Главная страница",
+        "src": "assets/images/o-sh.jpg",
+        "alt": "Полный макет концепции O–Sh с портретами, украшениями и коллекциями",
+        "width": 1400,
+        "height": 5406
+      }
+    ],
+    "featured": true,
+    "cover": {
+      "src": "assets/images/o-sh.jpg",
+      "alt": "Концепция O–Sh с украшениями и крупным портретом",
+      "width": 1400,
+      "height": 5406,
+      "format": "portrait"
+    },
+    "published": true
+  },
+  {
+    "slug": "tane",
+    "name": "Tane",
+    "description": "Сайт видеопродакшена",
+    "type": "Концепция",
+    "role": "Веб-дизайн",
+    "intro": "Концепция сайта видеопродакшена и презентации работ студии.",
+    "blocks": [
+      {
+        "kind": "image",
+        "title": "Главная страница",
+        "src": "assets/images/tane.jpg",
+        "alt": "Полный макет концепции сайта видеопродакшена Tane",
+        "width": 1400,
+        "height": 4964
+      }
+    ],
+    "featured": false,
+    "cover": {
+      "src": "assets/images/tane.jpg",
+      "alt": "Концепция Tane: видеопродакшен и работы студии",
+      "width": 1400,
+      "height": 4964,
+      "format": "landscape"
+    },
+    "published": true
+  },
+  {
+    "slug": "bdf",
+    "name": "BDF",
+    "description": "Большой детский фестиваль",
+    "type": "Концепция",
+    "role": "Веб-дизайн",
+    "intro": "Концепция сайта Большого детского фестиваля.",
+    "blocks": [
+      {
+        "kind": "image",
+        "title": "Главная страница",
+        "src": "assets/images/bdf.jpg",
+        "alt": "Полный макет концепции сайта Большого детского фестиваля",
+        "width": 1400,
+        "height": 6755
+      }
+    ],
+    "featured": false,
+    "cover": {
+      "src": "assets/images/bdf.jpg",
+      "alt": "Концепция сайта Большого детского фестиваля",
+      "width": 1400,
+      "height": 6755,
+      "format": "portrait"
+    },
+    "published": true
+  },
+  {
+    "slug": "event-umarova",
+    "name": "Event Umarova",
+    "description": "Сайт организатора событий",
+    "type": "Концепция",
+    "role": "Веб-дизайн",
+    "intro": "Концепция сайта организатора событий с фотографиями мероприятий.",
+    "blocks": [
+      {
+        "kind": "image",
+        "title": "Главная страница",
+        "src": "assets/images/event-umarova.jpg",
+        "alt": "Полный макет концепции сайта Event Umarova",
+        "width": 1400,
+        "height": 7922
+      }
+    ],
+    "featured": false,
+    "cover": {
+      "src": "assets/images/event-umarova.jpg",
+      "alt": "Концепция сайта Event Umarova: фотографии мероприятий на тёмном фоне",
+      "width": 1400,
+      "height": 7922,
+      "format": "square"
+    },
+    "published": true
+  }
+]

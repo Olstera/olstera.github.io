@@ -1,0 +1,41 @@
+name: Опубликовать сайт
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Pages CMS context (optional for a manual run)
+        required: false
+        default: '{}'
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Regression checks
+        run: python3 -m unittest discover -s tools -p 'test_*.py' -v
+      - name: Build public pages
+        run: python3 tools/build_release.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish validated site
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+*.pyc
+output/
+dist/
+.dist-build-*/
+
+# Generated local preview pages
+/index.html
+/projects.html
+/project-*.html
+/block-library.html

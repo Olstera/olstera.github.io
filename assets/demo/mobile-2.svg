@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="820" viewBox="0 0 360 820">
+    <rect width="360" height="820" fill="#D9DCD0"/>
+    <g stroke="#B4B8AD" fill="none"><path d="M24 64H336"/><path d="M24 756H336"/></g>
+    <circle cx="36" cy="32" r="10" fill="none" stroke="#62665C" stroke-width="2"/>
+    <rect x="264" y="24" width="64" height="16" rx="8" fill="#B4B8AD"/>
+    <text x="24" y="130" font-family="Arial,sans-serif" font-size="42" fill="#272A25">02</text>
+    <rect x="24" y="162" width="312" height="347" rx="14" fill="#E9EAE4"/>
+    <circle cx="180" cy="335" r="60" fill="#F9F5A0"/>
+    <rect x="24" y="664" width="234" height="10" rx="5" fill="#B4B8AD"/>
+    <rect x="24" y="688" width="156" height="10" rx="5" fill="#B4B8AD"/>
+    <text x="24" y="790" font-family="Arial,sans-serif" font-size="12" fill="#62665C">ПРИМЕР КОМПОНОВКИ</text>
+    </svg>
