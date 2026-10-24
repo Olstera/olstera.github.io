@@ -57,7 +57,9 @@ def render_image(item, project_name, block_title, eager=False):
     """Use the same natural-height media and lightbox trigger in every layout."""
     attributes = image_attributes(item, eager)
     theme = ' case-image--pinkly' if item.get('theme') == 'pinkly' else ''
-    caption = escape(bind_short_words(f"{project_name} — {item.get('caption') or block_title}"))
+    caption_text = item.get('caption') or block_title
+    caption_label = f"{project_name} — {caption_text}" if caption_text else project_name
+    caption = escape(bind_short_words(caption_label))
     src = escape(item['src'], quote=True)
     note = f'<figcaption class="case-media-caption">{escape(item["caption"])}</figcaption>' if item.get('caption') else ''
     return f'''<figure class="case-media">
@@ -75,11 +77,19 @@ def render_blocks(project):
         kind = block['kind']
         if kind not in BLOCK_KINDS:
             raise ValueError(f'Unknown block kind: {kind}')
-        title = escape(required_text(block, 'title'))
+        if kind == 'image-pair':
+            title_value = block.get('title', '')
+            if not isinstance(title_value, str):
+                raise ValueError('Invalid title: image-pair title must be text.')
+            title_value = title_value.strip()
+        else:
+            title_value = required_text(block, 'title')
+        title = escape(title_value)
         heading_id = f'case-block-{index}-title'
-        label = f'<div class="case-block-heading"><span class="catalog-index">{index:02d} /</span><h2 id="{heading_id}">{title}</h2></div>'
+        label = f'<div class="case-block-heading"><span class="catalog-index">{index:02d} /</span><h2 id="{heading_id}">{title}</h2></div>' if title_value else ''
+        labelledby = f' aria-labelledby="{heading_id}"' if title_value else ''
         if kind in ('image', 'image-wide'):
-            content = render_image(block, project['name'], block['title'], eager=not image_seen)
+            content = render_image(block, project['name'], title_value, eager=not image_seen)
             image_seen = True
         elif kind in ('image-pair', 'mobile-gallery'):
             items = block['images']
@@ -87,7 +97,7 @@ def render_blocks(project):
                 raise ValueError(f'{kind}: expected two images or a gallery with at least two images.')
             cards = []
             for item in items:
-                cards.append(render_image(item, project['name'], block['title'], eager=not image_seen))
+                cards.append(render_image(item, project['name'], title_value, eager=not image_seen))
                 image_seen = True
             mobile = kind == 'mobile-gallery'
             css = ' case-image-grid--mobile' if mobile else ''
@@ -97,9 +107,8 @@ def render_blocks(project):
         else:
             paragraphs = required_text(block, 'text').split('\n\n')
             content = '<div class="case-copy">' + ''.join(f'<p class="case-body">{escape(p.strip())}</p>' for p in paragraphs if p.strip()) + '</div>'
-        output.append(f'<section class="case-block case-block--{kind}" aria-labelledby="{heading_id}">{label}{content}</section>')
+        output.append(f'<section class="case-block case-block--{kind}"{labelledby}>{label}{content}</section>')
     return '\n'.join(output)
-
 
 def read_content(name):
     return json.loads((SITE / 'content' / f'{name}.json').read_text(encoding='utf-8'))
