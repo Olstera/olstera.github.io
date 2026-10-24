@@ -49,6 +49,7 @@ components:
       - name: title
         label: Заголовок блока
         type: string
+        description: Необязательно. Оставьте пустым, если изображению не нужен отдельный заголовок.
       - name: src
         label: Изображение
         type: image
@@ -154,6 +155,7 @@ content:
               - name: title
                 label: Заголовок слева
                 type: string
+                required: true
               - name: text
                 label: Описание справа
                 type: text
@@ -185,6 +187,7 @@ content:
               - name: title
                 label: Заголовок
                 type: string
+                description: Необязательно. Оставьте пустым, если заголовок для мобильных экранов не нужен.
               - name: images
                 label: Экраны
                 component: image
