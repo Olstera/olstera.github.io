@@ -224,5 +224,76 @@
         "alt": "Полный макет концепции сайта Event Umarova"
       }
     ]
+  },
+  {
+    "name": "AI-фотосессии",
+    "slug": "photo-ai",
+    "published": true,
+    "featured": true,
+    "description": "Создание персонажей и генерация фотосессий ",
+    "type": "AI-visual",
+    "role": "AI-creator",
+    "intro": "Несколько фотосессий подруг",
+    "cover": {
+      "src": "assets/images/mvmow8jg-qss73ex6.jpeg",
+      "alt": "Ксюша",
+      "format": "landscape"
+    },
+    "blocks": [
+      {
+        "kind": "text",
+        "title": "Крайне увлекательное и энергозатратное ремесло",
+        "text": "Опыт пока небольшой, удалось поработать с двумя подругами. Результат смотрите ниже. Также покажу фото со своим персонажем"
+      },
+      {
+        "kind": "image-pair",
+        "images": [
+          {
+            "src": "assets/images/mvmou5dd-14a57v4w.jpeg",
+            "alt": "Ксюша в красной студии2"
+          },
+          {
+            "src": "assets/images/mvmoukha-5lpww3vj.jpeg",
+            "alt": "Ксюша в красной студии3"
+          }
+        ]
+      },
+      {
+        "kind": "image-wide",
+        "src": "assets/images/mvmovt8e-ta8pdomg.jpeg",
+        "alt": "Ксюша в красной студии4"
+      },
+      {
+        "kind": "image-pair",
+        "images": [
+          {
+            "src": "assets/images/mvmp0n1i-orcyjxp6.jpeg",
+            "alt": "Юля в чёрной студии1"
+          },
+          {
+            "src": "assets/images/mvmoykt1-npgixhvg.jpeg",
+            "alt": "Юля в чёрной студии2"
+          }
+        ]
+      },
+      {
+        "kind": "image-wide",
+        "src": "assets/images/mvmp0gux-eifnz3h4.jpeg",
+        "alt": "Юля в чёрной студии3"
+      },
+      {
+        "kind": "image-pair",
+        "images": [
+          {
+            "src": "assets/images/mvmp1kmz-trf08gpx.png",
+            "alt": "Оля1"
+          },
+          {
+            "src": "assets/images/mvmp1y48-9zf6m7hy.png",
+            "alt": "Оля2"
+          }
+        ]
+      }
+    ]
   }
 ]
