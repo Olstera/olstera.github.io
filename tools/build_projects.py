@@ -73,14 +73,15 @@ def render_image(item, project_name, block_title, eager=False):
 def render_blocks(project):
     output = []
     image_seen = False
+    image_kinds = {'image', 'image-wide', 'image-pair', 'mobile-gallery'}
     for index, block in enumerate(project['blocks'], 1):
         kind = block['kind']
         if kind not in BLOCK_KINDS:
             raise ValueError(f'Unknown block kind: {kind}')
-        if kind == 'image-pair':
-            title_value = block.get('title', '')
+        if kind in image_kinds:
+            title_value = block.get('title') or ''
             if not isinstance(title_value, str):
-                raise ValueError('Invalid title: image-pair title must be text.')
+                raise ValueError(f'Invalid title for {kind}: expected text.')
             title_value = title_value.strip()
         else:
             title_value = required_text(block, 'title')
@@ -101,7 +102,13 @@ def render_blocks(project):
                 image_seen = True
             mobile = kind == 'mobile-gallery'
             css = ' case-image-grid--mobile' if mobile else ''
-            region = f' tabindex="0" role="region" aria-labelledby="{heading_id}"' if mobile else ''
+            if mobile and title_value:
+                region = f' tabindex="0" role="region" aria-labelledby="{heading_id}"'
+            elif mobile:
+                gallery_label = escape(f'Экраны проекта {project["name"]}', quote=True)
+                region = f' tabindex="0" role="region" aria-label="{gallery_label}"'
+            else:
+                region = ''
             hint = '<p class="case-gallery-hint">Листайте экраны в сторону →</p>' if mobile else ''
             content = f'<div class="case-image-group"><div class="case-image-grid{css}"{region}>{"".join(cards)}</div>{hint}</div>'
         else:
