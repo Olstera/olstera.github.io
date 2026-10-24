@@ -180,52 +180,6 @@
     ]
   },
   {
-    "name": "BDF",
-    "slug": "bdf",
-    "published": true,
-    "featured": false,
-    "description": "Большой детский фестиваль",
-    "type": "Концепция",
-    "role": "Веб-дизайн",
-    "intro": "Концепция сайта Большого детского фестиваля.",
-    "cover": {
-      "src": "assets/images/bdf.jpg",
-      "alt": "Концепция сайта Большого детского фестиваля",
-      "format": "portrait"
-    },
-    "blocks": [
-      {
-        "kind": "image",
-        "title": "Главная страница",
-        "src": "assets/images/bdf.jpg",
-        "alt": "Полный макет концепции сайта Большого детского фестиваля"
-      }
-    ]
-  },
-  {
-    "name": "Event Umarova",
-    "slug": "event-umarova",
-    "published": true,
-    "featured": false,
-    "description": "Сайт организатора событий",
-    "type": "Концепция",
-    "role": "Веб-дизайн",
-    "intro": "Концепция сайта организатора событий с фотографиями мероприятий.",
-    "cover": {
-      "src": "assets/images/event-umarova.jpg",
-      "alt": "Концепция сайта Event Umarova: фотографии мероприятий на тёмном фоне",
-      "format": "square"
-    },
-    "blocks": [
-      {
-        "kind": "image",
-        "title": "Главная страница",
-        "src": "assets/images/event-umarova.jpg",
-        "alt": "Полный макет концепции сайта Event Umarova"
-      }
-    ]
-  },
-  {
     "name": "AI-фотосессии",
     "slug": "photo-ai",
     "published": true,
@@ -293,6 +247,52 @@
             "alt": "Оля2"
           }
         ]
+      }
+    ]
+  },
+  {
+    "name": "BDF",
+    "slug": "bdf",
+    "published": true,
+    "featured": false,
+    "description": "Большой детский фестиваль",
+    "type": "Концепция",
+    "role": "Веб-дизайн",
+    "intro": "Концепция сайта Большого детского фестиваля.",
+    "cover": {
+      "src": "assets/images/bdf.jpg",
+      "alt": "Концепция сайта Большого детского фестиваля",
+      "format": "portrait"
+    },
+    "blocks": [
+      {
+        "kind": "image",
+        "title": "Главная страница",
+        "src": "assets/images/bdf.jpg",
+        "alt": "Полный макет концепции сайта Большого детского фестиваля"
+      }
+    ]
+  },
+  {
+    "name": "Event Umarova",
+    "slug": "event-umarova",
+    "published": true,
+    "featured": false,
+    "description": "Сайт организатора событий",
+    "type": "Концепция",
+    "role": "Веб-дизайн",
+    "intro": "Концепция сайта организатора событий с фотографиями мероприятий.",
+    "cover": {
+      "src": "assets/images/event-umarova.jpg",
+      "alt": "Концепция сайта Event Umarova: фотографии мероприятий на тёмном фоне",
+      "format": "square"
+    },
+    "blocks": [
+      {
+        "kind": "image",
+        "title": "Главная страница",
+        "src": "assets/images/event-umarova.jpg",
+        "alt": "Полный макет концепции сайта Event Umarova"
       }
     ]
   }
