@@ -160,7 +160,7 @@
     "name": "Aurema",
     "slug": "aurema",
     "published": true,
-    "featured": true,
+    "featured": false,
     "description": "Интернет-магазин косметики",
     "type": "Веб-дизайн",
     "role": "Веб-дизайн",
@@ -176,29 +176,6 @@
         "title": "Главная страница",
         "src": "assets/images/aurema.jpg",
         "alt": "Полный макет главной страницы магазина косметики Aurema"
-      }
-    ]
-  },
-  {
-    "name": "Tane",
-    "slug": "tane",
-    "published": false,
-    "featured": false,
-    "description": "Сайт видеопродакшена",
-    "type": "Концепция",
-    "role": "Веб-дизайн",
-    "intro": "Концепция сайта видеопродакшена и презентации работ студии.",
-    "cover": {
-      "src": "assets/images/tane.jpg",
-      "alt": "Концепция Tane: видеопродакшен и работы студии",
-      "format": "landscape"
-    },
-    "blocks": [
-      {
-        "kind": "image",
-        "title": "Главная страница",
-        "src": "assets/images/tane.jpg",
-        "alt": "Полный макет концепции сайта видеопродакшена Tane"
       }
     ]
   },
