@@ -137,6 +137,7 @@
       },
       {
         "kind": "mobile-gallery",
+        "title": "Мобильная версия",
         "images": [
           {
             "src": "assets/images/mvmnt8bs-k1g7nqx0.png",
