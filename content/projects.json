@@ -119,8 +119,8 @@
   {
     "name": "O–Sh",
     "slug": "o-sh",
-    "published": true,
-    "featured": true,
+    "published": false,
+    "featured": false,
     "description": "Украшения с характером",
     "type": "Концепция",
     "role": "Веб-дизайн",
@@ -142,7 +142,7 @@
   {
     "name": "Tane",
     "slug": "tane",
-    "published": true,
+    "published": false,
     "featured": false,
     "description": "Сайт видеопродакшена",
     "type": "Концепция",
