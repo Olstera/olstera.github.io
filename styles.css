@@ -332,6 +332,5 @@ main { margin-left: var(--rail-width); max-width: 1680px; padding-top: var(--nav
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero { position: relative; top: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
