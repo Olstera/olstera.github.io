@@ -177,13 +177,14 @@ class SiteBuildTests(unittest.TestCase):
             build_release.build_release()
         self.assertEqual((destination / 'index.html').read_bytes(), previous)
 
-    def test_cms_image_without_dimensions_has_natural_height(self):
+    def test_cms_image_without_dimensions_reserves_intrinsic_space(self):
         image = self.projects[0]['cover']
         image.pop('width', None)
         image.pop('height', None)
         attributes = build_projects.image_attributes(image)
         self.assertIn('src=', attributes)
-        self.assertNotIn('height=', attributes)
+        self.assertIn('width="2"', attributes)
+        self.assertIn('height="2"', attributes)
 
 
 if __name__ == '__main__':
