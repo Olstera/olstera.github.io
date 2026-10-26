@@ -31,8 +31,72 @@ def template(template_name, **values):
     return Template(source).substitute(values).strip()
 
 
+def intrinsic_image_dimensions(path):
+    """Read intrinsic raster dimensions so browsers can reserve image space before loading."""
+    with path.open('rb') as image:
+        header = image.read(32)
+        if header.startswith(b'\x89PNG\r\n\x1a\n') and len(header) >= 24:
+            return int.from_bytes(header[16:20], 'big'), int.from_bytes(header[20:24], 'big')
+        if header[:6] in (b'GIF87a', b'GIF89a') and len(header) >= 10:
+            return int.from_bytes(header[6:8], 'little'), int.from_bytes(header[8:10], 'little')
+        if header.startswith(b'RIFF') and header[8:12] == b'WEBP':
+            image.seek(12)
+            while True:
+                chunk = image.read(8)
+                if len(chunk) < 8:
+                    break
+                kind, size = chunk[:4], int.from_bytes(chunk[4:], 'little')
+                data_start = image.tell()
+                data = image.read(min(size, 10))
+                if kind == b'VP8X' and len(data) >= 10:
+                    width = 1 + int.from_bytes(data[4:7], 'little')
+                    height = 1 + int.from_bytes(data[7:10], 'little')
+                    return width, height
+                if kind == b'VP8L' and len(data) >= 5 and data[0] == 0x2f:
+                    width = 1 + ((data[2] & 0x3f) << 8) + data[1]
+                    height = 1 + ((data[4] & 0x0f) << 10) + (data[3] << 2) + ((data[2] & 0xf0) >> 4)
+                    return width, height
+                if kind == b'VP8 ' and len(data) >= 10 and data[3:6] == b'\x9d\x01\x2a':
+                    width = int.from_bytes(data[6:8], 'little') & 0x3fff
+                    height = int.from_bytes(data[8:10], 'little') & 0x3fff
+                    return width, height
+                image.seek(data_start + size + (size & 1))
+        if header.startswith(b'\xff\xd8'):
+            image.seek(2)
+            frame_markers = {0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf}
+            while True:
+                marker_prefix = image.read(1)
+                if not marker_prefix:
+                    break
+                if marker_prefix != b'\xff':
+                    continue
+                marker = image.read(1)
+                while marker == b'\xff':
+                    marker = image.read(1)
+                if not marker:
+                    break
+                value = marker[0]
+                if value in {0xd8, 0xd9, 0x01} or 0xd0 <= value <= 0xd7:
+                    continue
+                segment_length = image.read(2)
+                if len(segment_length) != 2:
+                    break
+                length = int.from_bytes(segment_length, 'big')
+                if length < 2:
+                    break
+                if value in frame_markers:
+                    frame = image.read(5)
+                    if len(frame) != 5:
+                        break
+                    height = int.from_bytes(frame[1:3], 'big')
+                    width = int.from_bytes(frame[3:5], 'big')
+                    return width, height
+                image.seek(length - 2, 1)
+    return None
+
+
 def image_attributes(item, eager=False):
-    """Validate local artwork once for listing covers and case media."""
+    """Validate local artwork and include dimensions when available."""
     src = required_text(item, 'src')
     path = Path(src)
     if (urlsplit(src).scheme or '?' in src or '#' in src or path.is_absolute()
@@ -43,14 +107,33 @@ def image_attributes(item, eager=False):
     if path.suffix.lower() not in {'.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif', '.svg'}:
         raise ValueError(f'Unsupported image format: {src}')
     alt = required_text(item, 'alt')
-    attributes = f'src="{escape(src, quote=True)}" alt="{escape(alt, quote=True)}"'
+    provided = {}
     for key in ('width', 'height'):
         if key in item:
             value = item[key]
             if type(value) is not int or value <= 0:
                 raise ValueError(f'Invalid {key}: {src}')
-            attributes += f' {key}="{value}"'
+            provided[key] = value
+    intrinsic = intrinsic_image_dimensions(SITE / path)
+    if intrinsic and all(value > 0 for value in intrinsic):
+        natural_width, natural_height = intrinsic
+        if 'width' in provided and 'height' in provided:
+            width, height = provided['width'], provided['height']
+        elif 'width' in provided:
+            width = provided['width']
+            height = max(1, round(width * natural_height / natural_width))
+        elif 'height' in provided:
+            height = provided['height']
+            width = max(1, round(height * natural_width / natural_height))
+        else:
+            width, height = natural_width, natural_height
+        provided = {'width': width, 'height': height}
+    attributes = f'src="{escape(src, quote=True)}" alt="{escape(alt, quote=True)}"'
+    for key in ('width', 'height'):
+        if key in provided:
+            attributes += f' {key}="{provided[key]}"'
     return attributes + (' fetchpriority="high"' if eager else ' loading="lazy"')
+
 
 
 def render_image(item, project_name, block_title, eager=False):
