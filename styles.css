@@ -258,8 +258,7 @@ main { margin-left: var(--rail-width); max-width: 1680px; padding-top: var(--nav
   .sidebar .contact-button { font-size: .75rem; padding: 10px 12px; min-height: 40px; }
   .sidebar-note, .sidebar-year { display: none; }
   .section { padding-top: 40px; padding-bottom: 48px; }
-  /* On mobile, let the cover scroll normally; only the yellow edge stays pinned. */
-  .hero { position: relative; top: auto; padding-top: 24px; }
+  .hero { padding-top: 24px; }
   .page-header { position: relative; top: auto; padding-top: 28px; padding-bottom: 20px; }
   .section-topline { font-size: .75rem; gap: 16px; }
   .hero h1 span:nth-child(3) { padding-left: 12%; }
