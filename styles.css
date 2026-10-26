@@ -271,8 +271,9 @@ main { margin-left: var(--rail-width); max-width: 1680px; padding-top: var(--nav
   .projects { grid-template-columns: 1fr; gap: 36px; }
   .pinkly-cover { padding: 22px 16px; }
   .cropped-cover { aspect-ratio: 1.2; }
-  .project-info { flex-direction: row; gap: 14px; padding-top: 16px; padding-bottom: 20px; }
-  .project-type { font-size: .625rem; }
+  .project-info { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; gap: 14px; padding-top: 16px; padding-bottom: 20px; min-width: 0; }
+  .project-info > div { min-width: 0; }
+  .project-info > .project-type { justify-self: end; max-width: 100%; min-width: 0; font-size: .625rem; white-space: normal; overflow-wrap: anywhere; }
   .approach-intro { margin-bottom: 32px; }
   .steps li { padding: 26px 0; grid-template-columns: 24px 1fr; gap: 14px; }
   .email-link { margin: 28px 0; }
