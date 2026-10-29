@@ -201,6 +201,7 @@
       },
       {
         "kind": "image-pair",
+        "title": "Главная страница",
         "images": [
           {
             "src": "assets/images/mvturyly-zk81y1gb.png",
