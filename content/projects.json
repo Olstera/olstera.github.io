@@ -160,7 +160,7 @@
     "name": "ЖК Литейный",
     "slug": "zhk-liteynyy",
     "published": true,
-    "featured": false,
+    "featured": true,
     "description": "Лендинг для жилого комплекса",
     "type": "Веб-дизайн",
     "role": "Веб-дизайнер",
