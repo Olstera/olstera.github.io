@@ -300,7 +300,7 @@
     "name": "Rusta Cargo service",
     "slug": "rustacargoservice",
     "published": true,
-    "featured": true,
+    "featured": false,
     "description": "Сайт для транспортной компании «Руста Карго Сервис»",
     "type": "Веб-дизайн",
     "role": "Веб-дизайнер",
